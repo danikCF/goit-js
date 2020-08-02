@@ -9,6 +9,7 @@ const products = [
 const calculateTotalPrice = function (allProdcuts, productName) {
   let total = 0;
   for (let product of allProdcuts) {
+    console.log(product);
     if (productName === product.name) {
       total = product.price * product.quantity;
       break;
