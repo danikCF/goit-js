@@ -16,21 +16,11 @@ const images = [
     },
   ];
 const ul = document.querySelector("#gallery");
-console.dir(ul);
-images.forEach(element => {
-    const newItem = `<li> 
-    <img scr="${element.url}" alt="${element.alt}" class="img">
-    </li> `;
-    console.log(newItem);
-    ul.insertAdjacentHTML('beforeend', newItem);
-});
-const newItemLi = document.querySelectorAll(".img");
-console.log(newItemLi);
-newItemLi.forEach(element => {
-    element.style.width = '450px';
-    element.style.height = '300px';
-
-});
+const ulArray = images.map(elem => {
+  const li = `<li><img src="${elem.url}" alt="${elem.alt}" width="300px" height="200px"></li>`;
+  return li;
+})
+ul.insertAdjacentHTML(`afterbegin`,ulArray.join(''));
 ul.style.listStyle = 'none';
 ul.style.display= 'flex';
 ul.style.justifyConent = 'center';
