@@ -6,7 +6,7 @@ const lightbox = document.querySelector(".lightbox");
 const lightboxImage = document.querySelector(".lightbox__image");
 const lightboxButton = document.querySelector(".lightbox__button");
 
- gallery.forEach((object) => {
+ gallery.map((object) => {
     const img = document.createElement("img");
     img.classList.add("gallery__image");
     
@@ -19,7 +19,7 @@ const lightboxButton = document.querySelector(".lightbox__button");
     link.setAttribute("href",object.original);
     
     link.append(img);   
-    
+        
     const item = document.createElement("li");
      item.classList.add("gallery__item");
      item.append(link);
@@ -29,17 +29,21 @@ const lightboxButton = document.querySelector(".lightbox__button");
  });
 
  ulGallery.addEventListener("click",(event)=>{
+     event.preventDefault();
+     if (event.target.nodeName === "IMG"){
      const newSrc = event.target.dataset.source;
      console.log(newSrc);
      lightbox.classList.add("is-open");
      lightboxImage.src = newSrc;
+     }
  });
 
- lightboxButton.addEventListener("click",() =>{
-     lightbox.classList.remove("is-open");
-     lightboxImage.src = "";
- });
- lightbox.addEventListener("click",() =>{
-    lightbox.classList.remove("is-open");
-    lightboxImage.src = "";
-});
+ function closeLightBox (event){
+    if (event.target.nodeName !== "IMG"){
+        lightbox.classList.remove("is-open");
+        lightboxImage.src = "";
+       }
+ }
+ lightboxButton.addEventListener("click", closeLightBox);
+ lightbox.addEventListener("click",closeLightBox);
+   
