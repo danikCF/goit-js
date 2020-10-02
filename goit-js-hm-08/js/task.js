@@ -6,7 +6,7 @@ const lightbox = document.querySelector(".lightbox");
 const lightboxImage = document.querySelector(".lightbox__image");
 const lightboxButton = document.querySelector(".lightbox__button");
 
- gallery.map((object) => {
+ const galleryItems = gallery.map((object) => {
     const img = document.createElement("img");
     img.classList.add("gallery__image");
     
@@ -25,8 +25,10 @@ const lightboxButton = document.querySelector(".lightbox__button");
      item.append(link);
     
      
-     ulGallery.append(item);
+     return item ; 
  });
+ 
+ ulGallery.append(...galleryItems);
 
  ulGallery.addEventListener("click",(event)=>{
      event.preventDefault();
